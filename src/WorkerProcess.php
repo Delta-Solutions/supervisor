@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Horizon;
+namespace DeltaSolutions\Supervisor;
 
 use Carbon\CarbonImmutable;
 use Closure;
-use Laravel\Horizon\Events\UnableToLaunchProcess;
-use Laravel\Horizon\Events\WorkerProcessRestarting;
+use DeltaSolutions\Supervisor\Events\UnableToLaunchProcess;
+use DeltaSolutions\Supervisor\Events\WorkerProcessRestarting;
 use Symfony\Component\Process\Exception\ExceptionInterface;
 
 class WorkerProcess

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Horizon;
+namespace DeltaSolutions\Supervisor;
 
 use Carbon\CarbonImmutable;
 use Closure;
@@ -8,13 +8,13 @@ use Exception;
 use Illuminate\Contracts\Cache\Factory as CacheFactory;
 use Illuminate\Contracts\Debug\ExceptionHandler;
 use Illuminate\Support\Str;
-use Laravel\Horizon\Contracts\HorizonCommandQueue;
-use Laravel\Horizon\Contracts\MasterSupervisorRepository;
-use Laravel\Horizon\Contracts\Pausable;
-use Laravel\Horizon\Contracts\Restartable;
-use Laravel\Horizon\Contracts\SupervisorRepository;
-use Laravel\Horizon\Contracts\Terminable;
-use Laravel\Horizon\Events\MasterSupervisorLooped;
+use DeltaSolutions\Supervisor\Contracts\HorizonCommandQueue;
+use DeltaSolutions\Supervisor\Contracts\MasterSupervisorRepository;
+use DeltaSolutions\Supervisor\Contracts\Pausable;
+use DeltaSolutions\Supervisor\Contracts\Restartable;
+use DeltaSolutions\Supervisor\Contracts\SupervisorRepository;
+use DeltaSolutions\Supervisor\Contracts\Terminable;
+use DeltaSolutions\Supervisor\Events\MasterSupervisorLooped;
 use Throwable;
 
 class MasterSupervisor implements Pausable, Restartable, Terminable

@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Horizon\Console;
+namespace DeltaSolutions\Supervisor\Console;
 
 use Exception;
 use Illuminate\Console\Command;
-use Laravel\Horizon\SupervisorFactory;
-use Laravel\Horizon\SupervisorOptions;
+use DeltaSolutions\Supervisor\SupervisorFactory;
+use DeltaSolutions\Supervisor\SupervisorOptions;
 
 class SupervisorCommand extends Command
 {
@@ -14,7 +14,7 @@ class SupervisorCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'horizon:supervisor
+    protected $signature = 'supervisor:create
                             {name : The name of supervisor}
                             {connection : The name of the connection to work}
                             {--balance= : The balancing strategy the supervisor should apply}
@@ -56,7 +56,7 @@ class SupervisorCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  \Laravel\Horizon\SupervisorFactory  $factory
+     * @param  \DeltaSolutions\Supervisor\SupervisorFactory  $factory
      * @return int|null
      */
     public function handle(SupervisorFactory $factory)
@@ -79,7 +79,7 @@ class SupervisorCommand extends Command
     /**
      * Start the given supervisor.
      *
-     * @param  \Laravel\Horizon\Supervisor  $supervisor
+     * @param  \DeltaSolutions\Supervisor\Supervisor  $supervisor
      * @return void
      */
     protected function start($supervisor)
@@ -94,6 +94,7 @@ class SupervisorCommand extends Command
 
         $supervisor->working = ! $this->option('paused');
 
+        
         $supervisor->scale(max(
             0, $this->option('max-processes') - $supervisor->totalSystemProcessCount()
         ));
@@ -104,7 +105,7 @@ class SupervisorCommand extends Command
     /**
      * Get the supervisor options.
      *
-     * @return \Laravel\Horizon\SupervisorOptions
+     * @return \DeltaSolutions\Supervisor\SupervisorOptions
      */
     protected function supervisorOptions()
     {

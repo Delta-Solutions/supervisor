@@ -1,13 +1,13 @@
 <?php
 
-namespace Laravel\Horizon;
+namespace DeltaSolutions\Supervisor;
 
 class QueueCommandString
 {
     /**
      * Get the additional option string for the worker command.
      *
-     * @param  \Laravel\Horizon\SupervisorOptions  $options
+     * @param  \DeltaSolutions\Supervisor\SupervisorOptions  $options
      * @return string
      */
     public static function toWorkerOptionsString(SupervisorOptions $options)
@@ -22,7 +22,7 @@ class QueueCommandString
     /**
      * Get the additional option string for the supervisor command.
      *
-     * @param  \Laravel\Horizon\SupervisorOptions  $options
+     * @param  \DeltaSolutions\Supervisor\SupervisorOptions  $options
      * @return string
      */
     public static function toSupervisorOptionsString(SupervisorOptions $options)
@@ -44,7 +44,7 @@ class QueueCommandString
     /**
      * Get the additional option string for the command.
      *
-     * @param  \Laravel\Horizon\SupervisorOptions  $options
+     * @param  \DeltaSolutions\Supervisor\SupervisorOptions  $options
      * @param  bool  $paused
      * @return string
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Horizon\Contracts;
+namespace DeltaSolutions\Supervisor\Contracts;
 
 interface Pausable
 {

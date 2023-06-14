@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Horizon;
+namespace DeltaSolutions\Supervisor;
 
 use Illuminate\Support\Arr;
 

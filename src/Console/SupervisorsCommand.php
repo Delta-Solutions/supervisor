@@ -1,9 +1,9 @@
 <?php
 
-namespace Laravel\Horizon\Console;
+namespace DeltaSolutions\Supervisor\Console;
 
 use Illuminate\Console\Command;
-use Laravel\Horizon\Contracts\SupervisorRepository;
+use DeltaSolutions\Supervisor\Contracts\SupervisorRepository;
 
 class SupervisorsCommand extends Command
 {
@@ -12,7 +12,7 @@ class SupervisorsCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'horizon:supervisors';
+    protected $signature = 'supervisor:list';
 
     /**
      * The console command description.
@@ -24,7 +24,7 @@ class SupervisorsCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  \Laravel\Horizon\Contracts\SupervisorRepository  $supervisors
+     * @param  \DeltaSolutions\Supervisor\Contracts\SupervisorRepository  $supervisors
      * @return void
      */
     public function handle(SupervisorRepository $supervisors)
@@ -38,6 +38,7 @@ class SupervisorsCommand extends Command
         $this->table([
             'Name', 'PID', 'Status', 'Workers', 'Balancing',
         ], collect($supervisors)->map(function ($supervisor) {
+
             return [
                 $supervisor->name,
                 $supervisor->pid,

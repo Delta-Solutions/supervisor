@@ -1,18 +1,18 @@
 <?php
 
-namespace Laravel\Horizon;
+namespace DeltaSolutions\Supervisor;
 
 use Carbon\CarbonImmutable;
 use Closure;
 use Exception;
 use Illuminate\Contracts\Cache\Factory as CacheFactory;
 use Illuminate\Contracts\Debug\ExceptionHandler;
-use Laravel\Horizon\Contracts\HorizonCommandQueue;
-use Laravel\Horizon\Contracts\Pausable;
-use Laravel\Horizon\Contracts\Restartable;
-use Laravel\Horizon\Contracts\SupervisorRepository;
-use Laravel\Horizon\Contracts\Terminable;
-use Laravel\Horizon\Events\SupervisorLooped;
+use DeltaSolutions\Supervisor\Contracts\HorizonCommandQueue;
+use DeltaSolutions\Supervisor\Contracts\Pausable;
+use DeltaSolutions\Supervisor\Contracts\Restartable;
+use DeltaSolutions\Supervisor\Contracts\SupervisorRepository;
+use DeltaSolutions\Supervisor\Contracts\Terminable;
+use DeltaSolutions\Supervisor\Events\SupervisorLooped;
 use Throwable;
 
 class Supervisor implements Pausable, Restartable, Terminable
@@ -29,7 +29,7 @@ class Supervisor implements Pausable, Restartable, Terminable
     /**
      * The SupervisorOptions that should be utilized.
      *
-     * @var \Laravel\Horizon\SupervisorOptions
+     * @var \DeltaSolutions\Supervisor\SupervisorOptions
      */
     public $options;
 
@@ -64,7 +64,7 @@ class Supervisor implements Pausable, Restartable, Terminable
     /**
      * Create a new supervisor instance.
      *
-     * @param  \Laravel\Horizon\SupervisorOptions  $options
+     * @param  \DeltaSolutions\Supervisor\SupervisorOptions  $options
      * @return void
      */
     public function __construct(SupervisorOptions $options)
@@ -77,7 +77,7 @@ class Supervisor implements Pausable, Restartable, Terminable
             //
         };
 
-        app(HorizonCommandQueue::class)->flush($this->name);
+
     }
 
     /**
@@ -117,8 +117,8 @@ class Supervisor implements Pausable, Restartable, Terminable
     /**
      * Create a new process pool with the given options.
      *
-     * @param  \Laravel\Horizon\SupervisorOptions  $options
-     * @return \Laravel\Horizon\ProcessPool
+     * @param  \DeltaSolutions\Supervisor\SupervisorOptions  $options
+     * @return \DeltaSolutions\Supervisor\ProcessPool
      */
     protected function createProcessPool(SupervisorOptions $options)
     {
@@ -237,6 +237,7 @@ class Supervisor implements Pausable, Restartable, Terminable
      */
     protected function shouldWait()
     {
+
         return ! config('horizon.fast_termination') ||
                app(CacheFactory::class)->get('horizon:terminate:wait');
     }
@@ -252,7 +253,7 @@ class Supervisor implements Pausable, Restartable, Terminable
 
         $this->listenForSignals();
 
-        $this->persist();
+//        $this->persist();
 
         while (true) {
             sleep(1);
@@ -287,13 +288,11 @@ class Supervisor implements Pausable, Restartable, Terminable
 
             $this->processPendingSignals();
 
-            $this->processPendingCommands();
-
             // If the supervisor is working, we will perform any needed scaling operations and
             // monitor all of these underlying worker processes to make sure they are still
             // processing queued jobs. If they have died, we will restart them each here.
+
             if ($this->working) {
-                $this->autoScale();
 
                 $this->processPools->each->monitor();
             }
@@ -303,7 +302,6 @@ class Supervisor implements Pausable, Restartable, Terminable
             // the current number of worker processes per queue for easy load monitoring.
             $this->persist();
 
-            event(new SupervisorLooped($this));
         } catch (Throwable $e) {
             app(ExceptionHandler::class)->report($e);
         }
@@ -330,23 +328,6 @@ class Supervisor implements Pausable, Restartable, Terminable
     {
         foreach (app(HorizonCommandQueue::class)->pending($this->name) as $command) {
             app($command->command)->process($this, $command->options);
-        }
-    }
-
-    /**
-     * Run the auto-scaling routine for the supervisor.
-     *
-     * @return void
-     */
-    protected function autoScale()
-    {
-        $this->lastAutoScaled = $this->lastAutoScaled ?:
-                    CarbonImmutable::now()->subSeconds($this->options->balanceCooldown + 1);
-
-        if (CarbonImmutable::now()->subSeconds($this->options->balanceCooldown)->gte($this->lastAutoScaled)) {
-            $this->lastAutoScaled = CarbonImmutable::now();
-
-            app(AutoScaler::class)->scale($this);
         }
     }
 

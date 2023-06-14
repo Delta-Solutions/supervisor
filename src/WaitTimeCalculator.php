@@ -1,11 +1,11 @@
 <?php
 
-namespace Laravel\Horizon;
+namespace DeltaSolutions\Supervisor;
 
 use Illuminate\Contracts\Queue\Factory as QueueFactory;
 use Illuminate\Support\Str;
-use Laravel\Horizon\Contracts\MetricsRepository;
-use Laravel\Horizon\Contracts\SupervisorRepository;
+use DeltaSolutions\Supervisor\Contracts\MetricsRepository;
+use DeltaSolutions\Supervisor\Contracts\SupervisorRepository;
 
 class WaitTimeCalculator
 {
@@ -19,14 +19,14 @@ class WaitTimeCalculator
     /**
      * The supervisor repository implementation.
      *
-     * @var \Laravel\Horizon\Contracts\SupervisorRepository
+     * @var \DeltaSolutions\Supervisor\Contracts\SupervisorRepository
      */
     public $supervisors;
 
     /**
      * The metrics repository implementation.
      *
-     * @var \Laravel\Horizon\Contracts\MetricsRepository
+     * @var \DeltaSolutions\Supervisor\Contracts\MetricsRepository
      */
     public $metrics;
 
@@ -34,8 +34,8 @@ class WaitTimeCalculator
      * Create a new calculator instance.
      *
      * @param  \Illuminate\Contracts\Queue\Factory  $queue
-     * @param  \Laravel\Horizon\Contracts\SupervisorRepository  $supervisors
-     * @param  \Laravel\Horizon\Contracts\MetricsRepository  $metrics
+     * @param  \DeltaSolutions\Supervisor\Contracts\SupervisorRepository  $supervisors
+     * @param  \DeltaSolutions\Supervisor\Contracts\MetricsRepository  $metrics
      * @return void
      */
     public function __construct(QueueFactory $queue,

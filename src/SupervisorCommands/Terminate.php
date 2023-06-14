@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\Horizon\SupervisorCommands;
+namespace DeltaSolutions\Supervisor\SupervisorCommands;
 
-use Laravel\Horizon\Contracts\Terminable;
+use DeltaSolutions\Supervisor\Contracts\Terminable;
 
 class Terminate
 {
     /**
      * Process the command.
      *
-     * @param  \Laravel\Horizon\Contracts\Terminable  $terminable
+     * @param  \DeltaSolutions\Supervisor\Contracts\Terminable  $terminable
      * @param  array  $options
      * @return void
      */

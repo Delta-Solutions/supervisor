@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\Horizon\SupervisorCommands;
+namespace DeltaSolutions\Supervisor\SupervisorCommands;
 
-use Laravel\Horizon\Supervisor;
+use DeltaSolutions\Supervisor\Supervisor;
 
 class Scale
 {
     /**
      * Process the command.
      *
-     * @param  \Laravel\Horizon\Supervisor  $supervisor
+     * @param  \DeltaSolutions\Supervisor\Supervisor  $supervisor
      * @param  array  $options
      * @return void
      */

@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\Horizon\SupervisorCommands;
+namespace DeltaSolutions\Supervisor\SupervisorCommands;
 
-use Laravel\Horizon\Contracts\Restartable;
+use DeltaSolutions\Supervisor\Contracts\Restartable;
 
 class Restart
 {
     /**
      * Process the command.
      *
-     * @param  \Laravel\Horizon\Contracts\Restartable  $restartable
+     * @param  \DeltaSolutions\Supervisor\Contracts\Restartable  $restartable
      * @return void
      */
     public function process(Restartable $restartable)

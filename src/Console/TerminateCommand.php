@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Horizon\Console;
+namespace DeltaSolutions\Supervisor\Console;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Cache\Factory as CacheFactory;
@@ -19,7 +19,7 @@ class TerminateCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'horizon:terminate
+    protected $signature = 'supervisor:terminate
                             {--wait : Wait for all workers to terminate}';
 
     /**
@@ -56,6 +56,5 @@ class TerminateCommand extends Command
             }
         }
 
-        $this->laravel['cache']->forever('illuminate:queue:restart', $this->currentTime());
     }
 }

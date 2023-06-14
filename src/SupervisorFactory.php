@@ -1,14 +1,14 @@
 <?php
 
-namespace Laravel\Horizon;
+namespace DeltaSolutions\Supervisor;
 
 class SupervisorFactory
 {
     /**
      * Create a new supervisor instance.
      *
-     * @param  \Laravel\Horizon\SupervisorOptions  $options
-     * @return \Laravel\Horizon\Supervisor
+     * @param  \DeltaSolutions\Supervisor\SupervisorOptions  $options
+     * @return \DeltaSolutions\Supervisor\Supervisor
      */
     public function make(SupervisorOptions $options)
     {

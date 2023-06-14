@@ -1,15 +1,15 @@
 <?php
 
-namespace Laravel\Horizon\SupervisorCommands;
+namespace DeltaSolutions\Supervisor\SupervisorCommands;
 
-use Laravel\Horizon\Contracts\Pausable;
+use DeltaSolutions\Supervisor\Contracts\Pausable;
 
 class Pause
 {
     /**
      * Process the command.
      *
-     * @param  \Laravel\Horizon\Contracts\Pausable  $pausable
+     * @param  \DeltaSolutions\Supervisor\Contracts\Pausable  $pausable
      * @return void
      */
     public function process(Pausable $pausable)

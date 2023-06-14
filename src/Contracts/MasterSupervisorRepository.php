@@ -1,8 +1,9 @@
 <?php
 
-namespace Laravel\Horizon\Contracts;
+namespace DeltaSolutions\Supervisor\Contracts;
 
-use Laravel\Horizon\MasterSupervisor;
+
+use DeltaSolutions\Supervisor\MasterSupervisor;
 
 interface MasterSupervisorRepository
 {
@@ -39,7 +40,7 @@ interface MasterSupervisorRepository
     /**
      * Update the information about the given master supervisor.
      *
-     * @param  \Laravel\Horizon\MasterSupervisor  $master
+     * @
      * @return void
      */
     public function update(MasterSupervisor $master);
